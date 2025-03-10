@@ -37,5 +37,4 @@ export type ValidPages =
   | "skills"
   | "experience"
   | "contact"
-  | "contributions"
   | "resume";
