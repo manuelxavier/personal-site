@@ -38,14 +38,6 @@ export const pagesConfig: PagesConfig = {
       description: "Manuel Xavier's experience in building web applications.",
     },
   },
-  contact: {
-    title: "Contact",
-    description: "Let's connect and explore collaborations.",
-    metadata: {
-      title: "Contact",
-      description: "Contact Manuel Xavier.",
-    },
-  },
   resume: {
     title: "Resume",
     description: "Manuel Xavier's resume.",

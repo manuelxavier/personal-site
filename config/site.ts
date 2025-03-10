@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Manuel Xavier Portfolio",
-  authorName: "Manuel Xavier",
+  authorName: "   ...",
   username: "manuelxavier",
   description:
     "Manuel Xavier is a Full Stack Developer, who loves to build web applications and is passionate about learning new technologies.",

@@ -9,8 +9,8 @@ export const routesConfig: any = {
       href: "/experience",
     },
     {
-      title: "Contact",
-      href: "/contact",
+      title: "CV",
+      href: "/cv",
     },
   ],
 };
