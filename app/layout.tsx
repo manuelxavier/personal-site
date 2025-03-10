@@ -1,37 +1,84 @@
-import type { Metadata } from "next";
-import { MainNav } from "@/components/common/main-nav";
-import { Geist, Geist_Mono } from "next/font/google";
-import { routesConfig } from "@/config/routes";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Inter as FontSans } from "next/font/google";
+import localFont from "next/font/local";
+
+import { ThemeProvider } from "@/components/common/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { ModalProvider } from "@/providers/modal-provider";
+
+const fontSans = FontSans({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Font files can be colocated inside of `pages`
+const fontHeading = localFont({
+  src: "../assets/fonts/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
 });
 
-export const metadata: Metadata = {
-  title: "My Site Manuel Xavier",
-  description: "Personal Site of Manuel Xavier",
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+export const metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [
+    {
+      name: siteConfig.authorName,
+      url: siteConfig.url,
+    },
+  ],
+  creator: siteConfig.username,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [{ url: siteConfig.ogImage }],
+    creator: siteConfig.username,
+  },
+  icons: {
+    icon: siteConfig.iconIco,
+    shortcut: siteConfig.logoIcon,
+    apple: siteConfig.logoIcon,
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: RootLayoutProps) {
+  
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable
+        )}
       >
-         <MainNav items={routesConfig.mainNav} />
-         <nav className="flex items-center gap-5"></nav>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Toaster />
+          <ModalProvider />
+        </ThemeProvider>
       </body>
     </html>
   );
