@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { MainNav } from "@/components/common/main-nav";
 import { Geist, Geist_Mono } from "next/font/google";
+import { routesConfig } from "@/config/routes";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,6 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+         <MainNav items={routesConfig.mainNav} />
+         <nav className="flex items-center gap-5"></nav>
         {children}
       </body>
     </html>
