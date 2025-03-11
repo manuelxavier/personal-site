@@ -30,14 +30,6 @@ export const pagesConfig: PagesConfig = {
         "Manuel Xavier key skills that define his professional identity.",
     },
   },
-  experience: {
-    title: "Experience",
-    description: "Highlighting career journey and impactful projects.",
-    metadata: {
-      title: "Experience",
-      description: "Manuel Xavier's experience in building web applications.",
-    },
-  },
   resume: {
     title: "Resume",
     description: "Manuel Xavier's resume.",
